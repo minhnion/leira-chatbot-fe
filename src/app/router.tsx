@@ -1,6 +1,7 @@
 import { createRootRoute, createRouter, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { workspaceRouteWithChildren } from "./workspace/workspace.route";
+import { indexPageRoute } from "./index-page/index-page.route";
 
 export const rootRoute = createRootRoute({
   component: () => (
@@ -13,6 +14,7 @@ export const rootRoute = createRootRoute({
 
 export const routeTree = rootRoute.addChildren([
   workspaceRouteWithChildren,
+  indexPageRoute,
 ]);
 
 export const router = createRouter({ routeTree });

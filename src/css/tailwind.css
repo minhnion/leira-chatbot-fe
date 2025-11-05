@@ -32,6 +32,7 @@
 
   --color-design-primary: #ffffff;
   --color-design-secondary: #3b82f6;
+  --color-dark-blue: #02093f;
 }
 
 @theme inline {
