@@ -1,9 +1,9 @@
 import { createRoute } from "@tanstack/react-router";
 import { workspaceRoute } from "../workspace.route";
-import { HomePage } from "./homepage";
+import { Analysis } from "./analysis";
 
-export const homepageRoute = createRoute({
+export const analysisRoute = createRoute({
   getParentRoute: () => workspaceRoute,
-  path: "homepage",
-  component: HomePage,
+  path: "analysis",
+  component: Analysis,
 });
