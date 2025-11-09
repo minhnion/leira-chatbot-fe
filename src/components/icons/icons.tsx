@@ -20,6 +20,8 @@ import {
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
 
+import ChatbotIcon from "@/assets/icons/chatbot.svg?react";
+
 const Icons = {
   ArrowsRotate: (props: any) => (
     <FontAwesomeIcon icon={faArrowsRotate} {...props} />
@@ -51,6 +53,7 @@ const Icons = {
   ),
   Eye: (props: any) => <FontAwesomeIcon icon={faEye} {...props} />,
   Close: (props: any) => <FontAwesomeIcon icon={faClose} {...props} />,
+  Chatbot: ChatbotIcon,
 };
 
 export { Icons };
