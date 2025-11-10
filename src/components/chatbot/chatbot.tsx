@@ -1,7 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import Icons from "@/components/icons/icons";
 
-export default function ChatBot({ open, onClose }: { open: boolean; onClose: () => void }) {
+export default function ChatBot({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
   const [messages, setMessages] = useState([
     { sender: "bot", text: "Chào bạn, mình giúp được gì?" },
   ]);
@@ -31,49 +37,52 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
   if (!open) return null;
 
   return (
-    <div className="fixed bottom-10 right-30 w-80 h-[480px] bg-white rounded-2xl shadow-lg flex flex-col z-50 border border-gray-200 animate-fade-in">
+    <div className="fixed bottom-10 right-30 w-85 h-[500px] bg-white rounded-lg shadow-lg flex flex-col z-50 border border-gray-200 animate-fade-in p-4">
       {/* Header */}
-      <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200 bg-gray-50">
+      <div className="flex justify-between items-center pb-4 border-b border-[#EFEEF5]">
         <div className="flex items-center gap-2">
-          <Icons.Chatbot className="text-primary-blue w-5 h-5" />
+          <Icons.Chat />
           <div>
-            <p className="font-semibold text-sm">Chat Bot</p>
-            <p className="text-xs text-green-500">Online</p>
+            <p className="font-bold">Chat Bot</p>
+            <p className="text-xs text-[#3bb625]">Online</p>
           </div>
         </div>
-        <button onClick={onClose} className="text-gray-500 hover:text-black">
-          {/* <X size={18} /> */}
+        <button onClick={onClose} className="text-[#AEAEAE] hover:text-black">
+          <Icons.Close />
         </button>
       </div>
 
       {/* Body */}
       <div
         ref={chatRef}
-        className="flex-1 overflow-y-auto p-3 flex flex-col gap-2 text-sm"
+        className="flex-1 overflow-y-auto flex flex-col mt-4 gap-y-4"
       >
         {messages.map((msg, i) => (
           <div
             key={i}
             className={`flex ${
               msg.sender === "user" ? "justify-end" : "justify-start"
-            }`}
+            } mb-2`}
           >
             {msg.text.includes("Mở rộng quyền") ? (
-              <div className="bg-blue-50 text-gray-800 p-3 rounded-lg max-w-[80%]">
-                <p className="font-semibold mb-1">Mở rộng quyền tiếp cận đất đai:</p>
-                <p>
-                  Công dân Việt Nam định cư ở nước ngoài có quốc tịch Việt Nam được sử dụng đất như người trong nước.
+              <div className="bg-[#EFEEF5] text-black p-4 rounded-lg w-auto wrap-break-word">
+                <p className="font-bold mb-1">
+                  Mở rộng quyền tiếp cận đất đai:
                 </p>
-                <button className="mt-2 text-sm text-primary-blue bg-blue-100 rounded-md px-2 py-1 hover:bg-blue-200 transition">
+                <p>
+                  Công dân Việt Nam định cư ở nước ngoài có quốc tịch Việt Nam
+                  được sử dụng đất như người trong nước.
+                </p>
+                <button className="mt-2 bg-design-lightblue rounded-lg px-4 py-2 text-primary-blue underline hover:bg-blue-200 transition">
                   Xem văn bản
                 </button>
               </div>
             ) : (
               <div
-                className={`px-3 py-2 rounded-lg max-w-[80%] ${
+                className={`px-4 py-2 rounded-lg wrap-break-word max-w-[90%] ${
                   msg.sender === "user"
-                    ? "bg-primary-blue text-white"
-                    : "bg-gray-100 text-gray-800"
+                    ? "bg-[#222020] text-white"
+                    : "bg-[#EFEEF5] text-black"
                 }`}
               >
                 {msg.text}
@@ -84,19 +93,25 @@ export default function ChatBot({ open, onClose }: { open: boolean; onClose: () 
       </div>
 
       {/* Footer */}
-      <div className="flex items-center border-t border-gray-200 p-2">
-        <input
+      <div className="flex items-end justify-between border-t border-[#EFEEF5] pt-4 gap-2">
+        <textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSend()}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              handleSend();
+            }
+          }}
           placeholder="Hỏi gì đó..."
-          className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-primary-blue"
+          rows={1}
+          className="w-full bg-[#F9F9F9] rounded-lg p-3 text-sm outline-none focus:ring-1 focus:ring-primary-blue resize-none"
         />
         <button
           onClick={handleSend}
-          className="ml-2 p-2 hover:scale-110 transition-transform"
+          className="hover:scale-110 transition-transform"
         >
-          {/* <Send size={18} className="text-primary-blue" /> */}
+          <Icons.Send className="h-11" />
         </button>
       </div>
     </div>
