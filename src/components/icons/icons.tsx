@@ -22,6 +22,9 @@ import {
 
 import ChatbotIcon from "@/assets/icons/chatbot.svg?react";
 
+import ChatIcon from "@/assets/icons/chat.svg?react";
+import SendIcon from "@/assets/icons/send-icon.svg?react";
+
 const Icons = {
   ArrowsRotate: (props: any) => (
     <FontAwesomeIcon icon={faArrowsRotate} {...props} />
@@ -54,6 +57,8 @@ const Icons = {
   Eye: (props: any) => <FontAwesomeIcon icon={faEye} {...props} />,
   Close: (props: any) => <FontAwesomeIcon icon={faClose} {...props} />,
   Chatbot: ChatbotIcon,
+  Chat: ChatIcon,
+  Send: SendIcon,
 };
 
 export { Icons };
